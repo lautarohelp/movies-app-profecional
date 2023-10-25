@@ -418,13 +418,13 @@ footer {
   border-radius: 8px;
 }
 
-.categoriesPreview-list, .categories-list {
+/* .categoriesPreview-list, .categories-list {
 /*   display: flex;
   align-items: center;
   justify-content: space-between;
   position: relative;
   flex-wrap: wrap; */
-}
+} */
 
 .load2 {
   background: var(--purple-light-2);
