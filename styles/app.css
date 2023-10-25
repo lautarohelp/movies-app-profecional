@@ -114,6 +114,7 @@ button {
 
 .movie-img {
   border-radius: 8px;
+  min-height: 175px;
 }
 
 .categoriesPreview-list, .categories-list {
@@ -379,8 +380,117 @@ footer {
   align-items: center;
 }
 
+/* cargando....... */
+
+.header-container, .trendingPreview-header, .categoriesPreview-container{
+  padding: 0 24px;
+}
+.trendingPreview-container, .categoriesPreview-container, footer{
+  margin-top: 48px;
+}
+.trendingPreview-header, .categoriesPreview-title {
+  margin-bottom: 24px;
+}
+.movie-container{
+  cursor: pointer;
+}
+
+.loading {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom:  15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+
+.loading:nth-child(2) {
+  animation-delay: .2s;
+}
+.loading:nth-child(3) {
+  animation-delay: .4s;
+}
+.movie-img {
+  border-radius: 8px;
+}
+
+.categoriesPreview-list, .categories-list {
+/*   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  flex-wrap: wrap; */
+}
+
+.load2 {
+  background: var(--purple-light-2);
+  border-radius: 8px;
+  height: 25px;
+  min-height: 25px;
+  max-height: 25px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  margin-bottom: 15px;
+  animation: loading-skeleton infinite 1.5s;
+}
+.load2:nth-child(2) {
+  animation-delay: .2s;
+}
+
+
+
+/* .load {
+  background: gray;
+  height: 225px;
+  min-height: 225px;
+  max-height: 225px;
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  border-radius: 10px;
+}
+
+.load2 {
+    /* padding: 1px; 
+    margin-right: 10px;
+    margin-bottom: 8px;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.load3{
+  background: gray;
+    display: inline-block;
+    border-radius: 10px;
+    width: 47.5%;
+    height: 300px;
+    margin-bottom: 5px;
+} */
+
+
 
 /* Navigation */
 .inactive {
   display: none;
 }
+
+/*  animaciones */
+@keyframes loading-skeleton {
+  0%, 100% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 0%;
+  }
+} 

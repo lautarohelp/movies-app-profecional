@@ -36,6 +36,10 @@ border: 1px solid rgba(255, 255, 255, 0.102);
   justify-content: center;
   flex-wrap: wrap;
   overflow:visible;
+  padding: 0 24px ;
+}
+.trendingPreview-movieList{
+  padding: 14px ;
 }
 
 .header-container--long{

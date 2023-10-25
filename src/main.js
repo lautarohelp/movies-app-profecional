@@ -10,23 +10,49 @@ const api = axios.create({
 
 // Utils
 
-function createMovies(movies, container) {
-  container.innerHTML = '';
+const lazyLoader = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const url = entry.target.getAttribute('data-img');
+      entry.target.setAttribute('src', url);
+    }
+  })
+});
+
+function createMovies(
+  movies,
+  container, 
+  {
+    lazyLoad = false, 
+    clean = true
+  } = {},
+  ) {
+
+  if (clean) {
+    container.innerHTML = '';
+  }
 
   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
     movieContainer.classList.add('movie-container');
     movieContainer.addEventListener('click', () => {
-      location.hash = '#movie=' + movie.id ;
-    })
+      location.hash = '#movie=' + movie.id;
+    });
 
     const movieImg = document.createElement('img');
     movieImg.classList.add('movie-img');
     movieImg.setAttribute('alt', movie.title);
     movieImg.setAttribute(
-      'src', 
+      lazyLoad ? 'data-img' : 'src', 
       'https://image.tmdb.org/t/p/w300' + movie.poster_path
-    );
+      );
+    movieImg.addEventListener('error', () => {
+      movieImg.setAttribute('src', 'https://innovating.capital/wp-content/uploads/2021/05/vertical-placeholder-image.jpg')
+    })
+
+    if (lazyLoad) {
+      lazyLoader.observe(movieImg);
+    }
 
     movieContainer.appendChild(movieImg)
     container.appendChild(movieContainer);
@@ -60,7 +86,7 @@ async function getTrendingMoviesPreview()  {
   const { data } = await api('/trending/movie/day');
   const movies = data.results
 
-  createMovies(movies, trendingMoviesPreviewList);
+  createMovies(movies, trendingMoviesPreviewList, true);
 
   /* movies.forEach(movie => {
     const movieContainer = document.createElement('div');
@@ -112,7 +138,7 @@ async function getMoviesByCategory(id)  {
   });
   const movies = data.results
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, true);
 
 /*   movies.forEach(movie => {
     const movieContainer = document.createElement('div');
@@ -142,11 +168,46 @@ async function getMoviesBySearch(query)  {
   createMovies(movies, genericSection);
 } 
 
+/* const btnLoadMore = document.createElement('button');
+btnLoadMore.innerText = 'Cargar más';
+btnLoadMore.addEventListener('click', getPaginatedTrendingMovies); */
+
 async function getTrendingMovies()  {
   const { data } = await api('/trending/movie/day');
   const movies = data.results
 
-  createMovies(movies, genericSection);
+  createMovies(movies, genericSection, {lazyLoad:true, clean:true});
+
+  /* genericSection.appendChild(btnLoadMore); */
+
+
+}
+
+
+
+async function getPaginatedTrendingMovies() {
+  const { 
+    scrollTop, 
+    scrollHeight, 
+    clientHeight
+  } = document.documentElement;
+  const scrollIsBottom = (scrollTop + clientHeight) >= (scrollHeight - 15);
+
+  if (scrollIsBottom) {
+    page++;
+    const { data } = await api('/trending/movie/day?page=2' , {
+      params: {
+        page,
+      }
+    })
+      
+    const movies = data.results
+  
+    createMovies(movies, genericSection, {lazyLoad:true, clean:false});
+  
+  }
+
+/*   genericSection.appendChild(btnLoadMore); */
 
 }
 
