@@ -15,6 +15,15 @@
   <header id="header" class="header-container">
     <span class="header-arrow inactive">&lt;</span>
     <h1 class="header-title">Lat-Man Movies</h1>
+    
+    <select name="languaje" class="selectoreLang" id="la">
+      <option class="optLang" value="fr">🇫🇷</option>
+      <option class="optLang" value="es-ES">🇪🇸</option>
+      <option class="optLang" value="en">🇺🇸</option>
+      <option class="optLang" value="pt-BR">🇧🇷</option>
+      <option class="optLang" value="es-VE">🇻🇪</option>
+    </select>
+
     <h1 class="header-title header-title--categoryView inactive">Acción</h1>
 
     <form id="searchForm" class="header-searchForm">
@@ -54,6 +63,16 @@
       <!-- <div class="category-container">
         <button id="id28" class="category-title">Romance</button>
       </div> -->
+    </article>
+  </section>
+
+  <section id="liked" class="liked-container">
+    <div class="liked-header">
+      <h2 class="liked-title">Películas favoritas</h2>
+    </div>
+
+    <article class="liked-movieList">
+      <div class="movie-container"></div>
     </article>
   </section>
   
@@ -144,6 +163,8 @@
       </div>
     </article>
   </section>
+
+
   <footer>
     <h1>lat-man</h1>
   </footer>

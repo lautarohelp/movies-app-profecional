@@ -109,7 +109,7 @@ dist
 
 # Serverless directories
 .serverless/
-.vscode
+
 # FuseBox cache
 .fusebox/
 
@@ -129,5 +129,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-// # secrets.js (API KEY)
-// src/secrets.js
+
